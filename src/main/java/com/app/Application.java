@@ -1,11 +1,7 @@
 package com.app;
 
-import com.app.model.Student;
-import com.app.repository.StudentRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Application {
