@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.ConstraintViolationException;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		System.out.println("handling  res not found exc ");
 		ErrorResponse errResp = new ErrorResponse(exc.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(errResp, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ResponseEntity<?> handleDataIntegrityViolationException(DataIntegrityViolationException exc, WebRequest request) {
+		System.out.println("Email id already registered");
+		ErrorResponse errResp = new ErrorResponse("Email id already registered", request.getDescription(false));
+		return new ResponseEntity<>(errResp, HttpStatus.NOT_ACCEPTABLE);
 	}
 
 	@ExceptionHandler(ConstraintViolationException.class)
